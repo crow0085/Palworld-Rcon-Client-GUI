@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Palworld Rcon Helper</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script defer src="render.js"></script>
+</head>
+
+<body>
+  <form id="get-rcon-info" onsubmit="return false">
+    <label for="ip">Server IP:</label>
+    <input type="text" value="127.0.0.1" id="ip" name="ip"><span id="ip-err"></span><br><br>
+
+    <label for="port">Rcon Port:</label>
+    <input type="text" value="25575" id="port" name="port"><span id="port-err"></span><br><br>
+
+    <label for="password">Rcon Password:</label>
+    <input type="text" value="test" id="password" name="password"><span id="pass-err"></span><br><br>
+
+    <button id="submit">submit</button> <span id="rcon-err"></span>
+  </form>
+
+  <form onsubmit="return false" style="display: none;" id="rcon-commands">
+    <label for="reconnect">If commands are not working, please click reconnect and make sure you entered correct information</label>
+    <button id="reconnect">reconnect</button><br><br>
+
+    <label for="send">Broadcast Message to server:</label>
+    <textarea class="textarea" id="send-txt" placeholder="e.g. Hello world"></textarea>
+    <button id="send">Send</button><br><br>
+
+    <button id="save">Save Server</button><br><br>
+
+    <label for="shutdown-txt">Broadcast Shutdown Message to server:</label>
+    <input type="text" id="shutdown-txt" name="shutdown-txt"><br>
+    <label for="shutdown-time">Time in seconds to shutdown server:</label>
+    <input type="number" id="shutdown-time" name="shutdown-time">
+    <button id="shutdown">Shutdown Server</button><br><br>
+
+    <label for="kick">Kick Player (steamId):</label>
+    <input type="text" id="kick-txt" name="kick">
+    <button id="kick">Kick Player</button><br><br>
+
+    <label for="ban">Ban Player (steamId):</label>
+    <input type="text" id="ban-txt" name="ban">
+    <button id="ban">Ban Player</button><br><br>    
+
+    <button id="show-players-btn">Players List</button>
+  
+  </form>
+
+  <form style="display: none;" id="show-data" onsubmit="return false">
+    <div id="player-list">
+
+    </div>
+    <button id="refresh">Refresh</button>
+    <button id="return">Return</button>    
+  </form>
+
+</body>
+
+</html>
