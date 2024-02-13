@@ -29,14 +29,12 @@ document.getElementById('submit').onclick = async () => {
 
     if (valid) {
         await createRconClient(ip, port, password)
-        //rShowData()
         document.getElementById("rcon-commands").style.display = "block"
         document.getElementById("get-rcon-info").style.display = "none"
         document.getElementById("show-data").style.display = "none"
     }
 }
-
-async function createRconClient(ip, port, password) {
+const createRconClient = async (ip, port, password) => {
     rconClient1 = new PalRCONClient(ip, Number(port), password, {
         onData: (data) => {
             console.log('Connection 1 data:\n', data.response)
