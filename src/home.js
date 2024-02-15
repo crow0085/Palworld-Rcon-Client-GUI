@@ -1,3 +1,5 @@
+const { PalRCONClient } = require('palrconclient');
+
 
 document.getElementById('connect').onclick = async () => {
 
@@ -26,9 +28,19 @@ document.getElementById('connect').onclick = async () => {
     }
 
     if (valid) {
-        sessionStorage.setItem('ip', ip)
-        sessionStorage.setItem('port', port)
-        sessionStorage.setItem('password', password)
-        window.location.replace('./rcon-commands.html');
+        const rconClient1 = new PalRCONClient(ip, port, password);
+        PalRCONClient.checkConnection(rconClient1)
+            .then((isValid) => {
+                if (isValid) {
+                    sessionStorage.setItem('ip', ip)
+                    sessionStorage.setItem('port', port)
+                    sessionStorage.setItem('password', password)
+                    window.location.replace('./rcon-commands.html');
+                } else {
+                    console.log(`connection failed`)
+                }
+            })
+            .catch((error) => console.error('Error:', error.message));
     }
+
 }

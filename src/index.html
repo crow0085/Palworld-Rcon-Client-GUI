@@ -2,66 +2,32 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Palworld Rcon Helper</title>
-  <link rel="stylesheet" href="index.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script defer src="home.js"></script>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script defer src="./render.js"></script>
 </head>
 
 <body>
-  <div class="container min-vh-100 d-flex justify-content-center align-items-center">
-    <form id="get-rcon-info" onsubmit="return false">
 
-      <div class="row align-content-center ">
-        <div class="col-5">
-          <label for="ip" class="col-form-label fw-bold">Server IP:</label>
-        </div>
-        <div class="col-5">
-          <input type="text" class="form-control" value="127.0.0.1" id="ip" name="ip">
-        </div>
-        <div class="col-auto">
-          <span id="ip-err"></span>
-        </div>
-      </div>
-      <div class="row align-content-center pt-3">
-        <div class="col-5">
-          <label for="port" class="col-form-label fw-bold">Rcon Port:</label>
-        </div>
-        <div class="col-5">
-          <input type="text" class="form-control " value="25575" id="port" name="port">
-        </div>
-        <div class="col-auto">
-          <span id="port-err"></span>
-        </div>
-      </div>
+    <div class="topnav">
+        <a href="#" id="connect">Connect</a>
+        <a href="#" id="send">Broadcast Message</a>
+        <a href="#" id="save">Save</a>
+        <a href="#" id="shutdown">Shutdown</a>
+        <a href="#" id="kick">Kick</a>
+        <a href="#" id="ban">Ban</a>
+        <a href="#" id="players">Show Players</a>
+    </div>
 
-      <div class="row align-content-center pt-3">
-        <div class="col-5">
-          <label for="password" class="col-form-label fw-bold">Rcon Password:</label>
-        </div>
-        <div class="col-5">
-          <input type="text" class="form-control" value="test" id="password" name="password">
-        </div>
-        <div class="col-auto">
-          <span id="pass-err"></span>
-        </div>
-      </div>
+    <div class="container min-vh-100  min-vw-100 justify-content-center" id="content">
+    </div>
 
-      <div class="row align-content-center pt-4">
-        <div class="col-5 "></div>
-        <div class="col-5 ">
-          <button type="button" class="btn btn-primary float-end" id="connect">Connect</button>
-        </div>
-      </div>
-
-    </form>
-  </div>
 </body>
 
 </html>
