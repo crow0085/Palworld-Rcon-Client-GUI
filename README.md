@@ -44,4 +44,4 @@ run the command to start the app:
 
 ## Credit
  - Myself for creating the GUI App
- - Lysec for the rcon client - https://github.com/Ly-sec/PalRCONClient
+ - Ly-sec for the rcon client - https://github.com/Ly-sec/PalRCONClient
