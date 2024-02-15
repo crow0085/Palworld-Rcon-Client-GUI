@@ -10,11 +10,12 @@ const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 1280,
-    height: 720,
+    height: 900,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: false,
+      //devTools: false
     },
   });
 
@@ -23,6 +24,8 @@ const createWindow = () => {
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+
+  mainWindow.removeMenu()
 };
 
 // This method will be called when Electron has finished

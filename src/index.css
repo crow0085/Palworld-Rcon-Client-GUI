@@ -3,6 +3,23 @@
   margin: 0;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
 body {
-  padding: 2rem;
+  min-height: 100vh;
+  background-color: #F4F4F5;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.content {
+  max-width: 80%;
+  margin: auto;
+  padding-top: 3rem;
 }
