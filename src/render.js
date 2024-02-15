@@ -19,10 +19,12 @@ function connectionPage() {
     // creating the ip label
     let ipLbl = document.createElement('label')
     ipLbl.innerHTML = 'Server IP: '
+    ipLbl.setAttribute('class', 'col-form-label')
 
     // creating the ip text input
     let ip_text = document.createElement('input')
     ip_text.setAttribute("type", "text");
+    ip_text.setAttribute('class', 'bg-secondary form-control')
     ip_text.id = 'ip_text'
 
     //creating the row div to store the ip label and ip text input
@@ -43,10 +45,12 @@ function connectionPage() {
     row.append(col)
 
     let portLbl = document.createElement('label')
+    portLbl.setAttribute('class', 'col-form-label')
     portLbl.innerHTML = 'Rcon Port: '
 
     let port_text = document.createElement('input')
     port_text.setAttribute("type", "text");
+    port_text.setAttribute('class', 'bg-secondary form-control')
     port_text.id = 'port_text'
     port_text.value = '25575'
 
@@ -68,10 +72,12 @@ function connectionPage() {
     row.append(col)
 
     let passwordLbl = document.createElement('label')
+    passwordLbl.setAttribute('class', 'col-form-label')
     passwordLbl.innerHTML = 'Rcon Password: '
 
     let password_text = document.createElement('input')
     password_text.setAttribute("type", "text");
+    password_text.setAttribute('class', 'bg-secondary form-control')
     password_text.id = 'password_text'
 
     //creating the row div to store the password label and password text input
@@ -153,7 +159,7 @@ document.getElementById('send').onclick = async () => {
     label.setAttribute("class", "col-form-label mt-3")
 
     let textarea = document.createElement("textarea");
-    textarea.setAttribute("class", "form-control mt-3")
+    textarea.setAttribute("class", "form-control mt-3 bg-secondary")
     textarea.setAttribute("rows", "5");
     textarea.id = 'send-txt'
 
@@ -227,7 +233,7 @@ document.getElementById('shutdown').onclick = async () => {
     label.setAttribute("class", "col-form-label mt-3")
 
     let textarea = document.createElement("textarea");
-    textarea.setAttribute("class", "form-control mt-3")
+    textarea.setAttribute("class", "form-control mt-3 bg-secondary")
     textarea.setAttribute("rows", "5");
     textarea.id = 'shutdown-txt'
 
@@ -237,7 +243,7 @@ document.getElementById('shutdown').onclick = async () => {
 
     let time = document.createElement("input");
     time.setAttribute("type", "number");
-    time.setAttribute("class", "form-control")
+    time.setAttribute("class", "form-control bg-secondary")
     time.id = 'time-txt'
 
     let sendBtn = document.createElement('button')
@@ -297,7 +303,7 @@ document.getElementById('ban').onclick = async () => {
         label.setAttribute("class", "col-form-label")
 
         let dropdown = document.createElement('select')
-        dropdown.setAttribute('class', 'form-control')
+        dropdown.setAttribute('class', 'form-control bg-secondary')
         dropdown.id = 'ban-txt'
 
         // Populate the dropdown with player names and IDs
@@ -305,6 +311,7 @@ document.getElementById('ban').onclick = async () => {
             const playerName = playerSet[0];
             const playerID = playerSet[2];
             const option = document.createElement('option');
+            option.setAttribute('class', 'bg-secondary')
             option.value = playerID;
             option.textContent = playerName;
             dropdown.appendChild(option);
@@ -394,7 +401,7 @@ document.getElementById('kick').onclick = async () => {
         label.setAttribute("class", "col-form-label")
 
         let dropdown = document.createElement('select')
-        dropdown.setAttribute('class', 'form-control')
+        dropdown.setAttribute('class', 'form-control bg-secondary')
         dropdown.id = 'kick-txt'
 
         // Populate the dropdown with player names and IDs
@@ -402,6 +409,7 @@ document.getElementById('kick').onclick = async () => {
             const playerName = playerSet[0];
             const playerID = playerSet[2];
             const option = document.createElement('option');
+            option.setAttribute('class', 'bg-secondary')
             option.value = playerID;
             option.textContent = playerName;
             dropdown.appendChild(option);
@@ -484,12 +492,13 @@ document.getElementById('players').onclick = async () => {
         let players = response.split(/[,\n]/).map(item => item.trim()).filter(item => item !== '');
         players = chunkArray(players, 3)
         let table = document.createElement("table");
-        table.setAttribute('class', 'table')
+        table.setAttribute('class', 'table bg-secondary')
         table.id = 'player-list'
         players.forEach(playerSet => {
             let row = table.insertRow(-1); // Create a new row for each player set
             playerSet.forEach((player, index) => {
                 let cell = row.insertCell(index); // Insert cells for each player in the player set
+                cell.setAttribute('class', 'bg-secondary')
                 cell.innerText = player;
             });
         });

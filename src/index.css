@@ -17,6 +17,10 @@ body {
   /* Firefox */
 }
 
+form, input, label, p, textarea, th, td, tr, select, option{
+  color: white !important;
+}
+
 .content {
   max-width: 80%;
   margin: auto;
