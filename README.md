@@ -41,8 +41,8 @@ run the command to start the app:
 ![Connection Screen](https://i.imgur.com/4xcUmxv.png "Connection Screen")
 ![Connection Screen](https://i.imgur.com/DrXAAgY.png "Connection Screen")
 ![Connection Screen](https://i.imgur.com/j8HGcq2.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/94Z7cmb.png"Connection Screen")
-![Connection Screen](https://i.imgur.com/hO6I2Le.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/94Z7cmb.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/7kteVxd.png "Connection Screen")
 
 
 
