@@ -13,7 +13,7 @@ A simple palworld rcon gui for those who dont want to use an rcon cli. Design is
 - Save
 - Shutdown
 - Kick Player
-- Ban Player 
+- Ban Player (If command doesnt work, make sure to have banlist.txt in Pal\Saved\SaveGames)
 - Show list of players
 
 
