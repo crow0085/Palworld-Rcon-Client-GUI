@@ -13,6 +13,18 @@ window.addEventListener('load', () => {
     connectionPage()
 })
 
+function setNavSelected(selected){
+    document.getElementById('connect').classList.remove('active')
+    document.getElementById('send').classList.remove('active')
+    document.getElementById('save').classList.remove('active')
+    document.getElementById('shutdown').classList.remove('active')
+    document.getElementById('kick').classList.remove('active')
+    document.getElementById('ban').classList.remove('active')
+    document.getElementById('players').classList.remove('active')
+
+    document.getElementById(`${selected}`).classList.add('active')
+}
+
 function connectionPage() {
     content.innerHTML = ''
 
@@ -148,10 +160,12 @@ const connect = async () => {
 }
 
 document.getElementById('connect').onclick = async () => {
+    setNavSelected('connect')
     connectionPage()
 }
 
 document.getElementById('send').onclick = async () => {
+    setNavSelected('send')
     content.innerHTML = ''
 
     let label = document.createElement("label");
@@ -206,6 +220,7 @@ const send = async () => {
 }
 
 document.getElementById('save').onclick = async () => {
+    setNavSelected('save')
     content.innerHTML = ''
 
     PalRCONClient.Save(rconClient1)
@@ -226,6 +241,7 @@ document.getElementById('save').onclick = async () => {
 }
 
 document.getElementById('shutdown').onclick = async () => {
+    setNavSelected('shutdown')
     content.innerHTML = ''
 
     let label = document.createElement("label");
@@ -291,20 +307,68 @@ const shutdown = async () => {
 }
 
 document.getElementById('ban').onclick = async () => {
+    setNavSelected('ban')
     content.innerHTML = ''
+    let label = document.createElement("label");
+    label.innerHTML = 'Ban Player: '
+    label.setAttribute("class", "col-form-label")
 
-    PalRCONClient.ShowPlayers(rconClient1).then((response) => {
+    let dropdown = document.createElement('select')
+    dropdown.setAttribute('class', 'form-control bg-secondary')
+    dropdown.id = 'ban-txt'
+    dropdown.onfocus = popBanDropdown
+
+    const option = document.createElement('option');
+    option.setAttribute('class', 'bg-secondary')
+    option.value = -1;
+    option.textContent = 'Select a player';
+    dropdown.appendChild(option);
+
+    let button = document.createElement('button')
+    button.setAttribute('class', 'btn btn-primary')
+    button.id = 'ban-btn'
+    button.onclick = banPlayer
+    button.innerHTML = 'Ban'
+
+    //creating the row div
+    row = document.createElement('div')
+    row.setAttribute("class", "row align-content-center pt-3")
+    content.append(row)
+
+    // creating a col div
+    col = document.createElement('div')
+    col.setAttribute("class", "col-auto")
+    col.append(label)
+    row.append(col)
+
+    // creating a col div
+    col = document.createElement('div')
+    col.setAttribute("class", "col-3")
+    col.append(dropdown)
+    row.append(col)
+
+    // creating a col div
+    col = document.createElement('div')
+    col.setAttribute("class", "col-auto")
+    col.append(button)
+    row.append(col)
+}
+
+const popBanDropdown = async () => {
+    await PalRCONClient.ShowPlayers(rconClient1).then((response) => {
         let players = response.split(/[,\n]/).map(item => item.trim()).filter(item => item !== '');
         players = chunkArray(players, 3)
         players = players.slice(1)
 
-        let label = document.createElement("label");
-        label.innerHTML = 'Ban Player: '
-        label.setAttribute("class", "col-form-label")
+        let dropdown = document.getElementById('ban-txt')
+        dropdown.options.length = 0;
 
-        let dropdown = document.createElement('select')
-        dropdown.setAttribute('class', 'form-control bg-secondary')
-        dropdown.id = 'ban-txt'
+        const option = document.createElement('option');
+        option.setAttribute('class', 'bg-secondary')
+        option.value = -1;
+        option.textContent = 'Select a player';
+        dropdown.appendChild(option);
+
 
         // Populate the dropdown with player names and IDs
         players.forEach(playerSet => {
@@ -317,34 +381,6 @@ document.getElementById('ban').onclick = async () => {
             dropdown.appendChild(option);
         });
 
-        let button = document.createElement('button')
-        button.setAttribute('class', 'btn btn-primary')
-        button.id = 'ban-btn'
-        button.onclick = banPlayer
-        button.innerHTML = 'Ban'
-
-        //creating the row div
-        row = document.createElement('div')
-        row.setAttribute("class", "row align-content-center pt-3")
-        content.append(row)
-
-        // creating a col div
-        col = document.createElement('div')
-        col.setAttribute("class", "col-auto")
-        col.append(label)
-        row.append(col)
-
-        // creating a col div
-        col = document.createElement('div')
-        col.setAttribute("class", "col-3")
-        col.append(dropdown)
-        row.append(col)
-
-        // creating a col div
-        col = document.createElement('div')
-        col.setAttribute("class", "col-auto")
-        col.append(button)
-        row.append(col)
     }).catch((err) => {
         let div = document.getElementById('alert')
         if (document.body.contains(div)) {
@@ -361,6 +397,9 @@ document.getElementById('ban').onclick = async () => {
 
 const banPlayer = async () => {
     const steamid = document.getElementById('ban-txt').value
+    if (steamid === -1) {
+        return
+    }
     PalRCONClient.Ban(rconClient1, steamid).then((response) => {
         let div = document.getElementById('alert')
         if (document.body.contains(div)) {
@@ -369,9 +408,11 @@ const banPlayer = async () => {
             div = document.createElement('div')
             div.id = 'alert'
         }
-        div.setAttribute("class", "alert alert-success")
-        div.innerHTML = `response from server: ${response}`
-        content.append(div)
+        popBanDropdown().then(() => {
+            div.setAttribute("class", "alert alert-success")
+            div.innerHTML = `response from server: ${response}`
+            content.append(div)
+        })
     })
         .catch((error) => {
             let div = document.getElementById('alert')
@@ -389,20 +430,68 @@ const banPlayer = async () => {
 }
 
 document.getElementById('kick').onclick = async () => {
+    setNavSelected('kick')
     content.innerHTML = ''
+    let label = document.createElement("label");
+    label.innerHTML = 'Kick Player: '
+    label.setAttribute("class", "col-form-label")
 
-    PalRCONClient.ShowPlayers(rconClient1).then((response) => {
+    let dropdown = document.createElement('select')
+    dropdown.setAttribute('class', 'form-control bg-secondary')
+    dropdown.id = 'kick-txt'
+    dropdown.onfocus = popKickDropdown
+
+    const option = document.createElement('option');
+    option.setAttribute('class', 'bg-secondary')
+    option.value = -1;
+    option.textContent = 'Select a player';
+    dropdown.appendChild(option);
+
+    let button = document.createElement('button')
+    button.setAttribute('class', 'btn btn-primary')
+    button.id = 'kick-btn'
+    button.onclick = kickPlayer
+    button.innerHTML = 'Kick'
+
+    //creating the row div
+    row = document.createElement('div')
+    row.setAttribute("class", "row align-content-center pt-3")
+    content.append(row)
+
+    // creating a col div
+    col = document.createElement('div')
+    col.setAttribute("class", "col-auto")
+    col.append(label)
+    row.append(col)
+
+    // creating a col div
+    col = document.createElement('div')
+    col.setAttribute("class", "col-3")
+    col.append(dropdown)
+    row.append(col)
+
+    // creating a col div
+    col = document.createElement('div')
+    col.setAttribute("class", "col-auto")
+    col.append(button)
+    row.append(col)
+}
+
+const popKickDropdown = async () => {
+    await PalRCONClient.ShowPlayers(rconClient1).then((response) => {
         let players = response.split(/[,\n]/).map(item => item.trim()).filter(item => item !== '');
         players = chunkArray(players, 3)
         players = players.slice(1)
 
-        let label = document.createElement("label");
-        label.innerHTML = 'Kick Player: '
-        label.setAttribute("class", "col-form-label")
+        let dropdown = document.getElementById('kick-txt')
+        dropdown.options.length = 0;
 
-        let dropdown = document.createElement('select')
-        dropdown.setAttribute('class', 'form-control bg-secondary')
-        dropdown.id = 'kick-txt'
+        const option = document.createElement('option');
+        option.setAttribute('class', 'bg-secondary')
+        option.value = -1;
+        option.textContent = 'Select a player';
+        dropdown.appendChild(option);
+
 
         // Populate the dropdown with player names and IDs
         players.forEach(playerSet => {
@@ -415,34 +504,6 @@ document.getElementById('kick').onclick = async () => {
             dropdown.appendChild(option);
         });
 
-        let button = document.createElement('button')
-        button.setAttribute('class', 'btn btn-primary')
-        button.id = 'kick-btn'
-        button.onclick = kickPlayer
-        button.innerHTML = 'Kick'
-
-        //creating the row div
-        row = document.createElement('div')
-        row.setAttribute("class", "row align-content-center pt-3")
-        content.append(row)
-
-        // creating a col div
-        col = document.createElement('div')
-        col.setAttribute("class", "col-auto")
-        col.append(label)
-        row.append(col)
-
-        // creating a col div
-        col = document.createElement('div')
-        col.setAttribute("class", "col-3")
-        col.append(dropdown)
-        row.append(col)
-
-        // creating a col div
-        col = document.createElement('div')
-        col.setAttribute("class", "col-auto")
-        col.append(button)
-        row.append(col)
     }).catch((err) => {
         let div = document.getElementById('alert')
         if (document.body.contains(div)) {
@@ -459,6 +520,9 @@ document.getElementById('kick').onclick = async () => {
 
 const kickPlayer = async () => {
     const steamid = document.getElementById('kick-txt').value
+    if (steamid === -1) {
+        return
+    }
     PalRCONClient.Kick(rconClient1, steamid).then((response) => {
         let div = document.getElementById('alert')
         if (document.body.contains(div)) {
@@ -467,9 +531,12 @@ const kickPlayer = async () => {
             div = document.createElement('div')
             div.id = 'alert'
         }
-        div.setAttribute("class", "alert alert-success")
-        div.innerHTML = `response from server: ${response}`
-        content.append(div)
+        popKickDropdown().then(() => {
+            div.setAttribute("class", "alert alert-success")
+            div.innerHTML = `response from server: ${response}`
+            content.append(div)
+        })
+
     })
         .catch((error) => {
             let div = document.getElementById('alert')
@@ -487,6 +554,11 @@ const kickPlayer = async () => {
 }
 
 document.getElementById('players').onclick = async () => {
+    setNavSelected('players')
+    displayPlayers()
+}
+
+const displayPlayers = async () => {
     content.innerHTML = ''
     PalRCONClient.ShowPlayers(rconClient1).then((response) => {
         let players = response.split(/[,\n]/).map(item => item.trim()).filter(item => item !== '');
@@ -516,6 +588,13 @@ document.getElementById('players').onclick = async () => {
         div.innerHTML = 'There was an error, please make sure you are successfully connected'
     })
 }
+
+setInterval(function () {
+    let playersTable = document.getElementById('player-list')
+    if (document.body.contains(playersTable)) {
+        displayPlayers()
+    }
+}, 5000);
 
 function chunkArray(arr, chunkSize) {
     const chunkedArray = [];
