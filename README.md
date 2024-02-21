@@ -41,13 +41,13 @@ run the command to start the app:
 
 ## Screenshots
 
-![Connection Screen](https://i.imgur.com/MpZf6V4.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/HzU7YzO.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/eH3C2p1.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/wmIOuyW.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/A2xZ9hA.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/cw9CEye.png "Connection Screen")
-![Connection Screen](https://i.imgur.com/MRCUMrQ.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/rL8uws3.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/Vz7ecrp.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/nzuEcoM.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/bdEtrKH.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/RTonrKs.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/cYesK0s.png "Connection Screen")
+![Connection Screen](https://i.imgur.com/8HH47gk.png "Connection Screen")
 
 
 
