@@ -19,7 +19,8 @@ A simple palworld rcon gui for those who dont want to use an rcon cli. Design is
 
 ## TODO
 
-add styling to better identify which nav is currently selected
+polishing
+adding new features that come to palworld rcon
 
 
 ## Install
