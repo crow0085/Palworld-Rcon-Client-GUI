@@ -19,8 +19,8 @@ A simple palworld rcon gui for those who dont want to use an rcon cli. Design is
 
 ## TODO
 
-polishing
-adding new features that come to palworld rcon
+- polishing
+- adding new features that come to palworld rcon
 
 
 ## Install
