@@ -24,8 +24,11 @@ A simple palworld rcon gui for those who dont want to use an rcon cli. Design is
 
 
 ## Install
+download the latest release installer: https://github.com/crow0085/Palworld-Rcon-Client-GUI/releases
+
+or
+
 Download or clone the repository, and open the project in your favorite editor 
-(I will add a release later)
 
 Run the command to install dependencies:
 
